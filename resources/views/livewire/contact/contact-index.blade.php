@@ -32,6 +32,11 @@
                     <option value="50">50</option>
                 </select>
             </div>
+
+        <div class="w-ful ml-auto">
+            <a href="{{ route('contact.create') }}" class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Contact Page</a>
+        </div>
+
             <div class="w-ful ml-auto">
                 <input wire:model="search" class="rounded border border-gray-300 p-2" placeholder="Search...">
             </div>
@@ -42,7 +47,7 @@
                 <th class="px-4 py-2 w-1/12">#</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Phone</th>
-                <th class="px-4 py-2 w-1/6">aksi</th>
+                <th class="px-4 py-2 w-1/6">Action</th>
             </tr>
             </thead>
             <tbody>

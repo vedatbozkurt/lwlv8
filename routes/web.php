@@ -28,5 +28,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('post', Posts::class);
 Route::get('contact', ContactIndex::class);
-Route::get('contact/create', Create::class);
+Route::get('contact/create', Create::class)->name('contact.create');
 Route::get('/contact/{id}/edit', Update::class)->name('contact.edit');
