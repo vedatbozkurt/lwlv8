@@ -11,6 +11,15 @@ class Contact extends Model
 
     protected $fillable = [
         'name',
-        'phone'
+        'phone',
+        'status'
     ];
+
+    public function getStatusAttribute($attribute)
+    {
+        return[
+        0 => 'Inactive',
+        1 => 'Active'
+    ][$attribute];
+    }
 }

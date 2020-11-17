@@ -14,18 +14,37 @@ class Index extends Component
 
     public $paginate = 5;
     public $search;
+    public $sortField;
+    public $sortAsc = true;
+    public $active = true;
 
-    protected $queryString = ['search'];
+    protected $queryString = ['search', 'active',  'sortAsc', 'sortField'];
 
     public function render()
     {
         // sleep(1);
-        $data = [
-            'contacts' => $this->search === null ?
-                Contact::latest()->paginate($this->paginate) :
-                Contact::latest()->where('name', 'like', '%' . $this->search . '%')->paginate($this->paginate)
-        ];
-        return view('livewire.contact.index', $data);
+        // Contact::latest()->paginate($this->paginate) :
+        return view('livewire.contact.index', [
+            'contacts' => Contact::paginate(10),
+            'contacts' => Contact::where(function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('phone', 'like', '%' . $this->search . '%');
+            })->where('status', $this->active)
+            ->when($this->sortField, function ($query) {
+                $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
+            })->paginate(10),
+        ]);
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortAsc = !$this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
+
+        $this->sortField = $field;
     }
 
     //reset page before searching

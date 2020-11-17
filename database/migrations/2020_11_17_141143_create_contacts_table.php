@@ -17,6 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
