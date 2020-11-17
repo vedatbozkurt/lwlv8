@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Livewire\Contact;
+
+use Livewire\Component;
+use App\Models\Contact;
+
+class Create extends Component
+{
+    public $name;
+    public $phone;
+
+    public function render()
+    {
+        return view('livewire.contact.create');
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'name' => 'required|min:3',
+            'phone' => 'required|max:15'
+        ]);
+        $contact = Contact::create([
+            'name' => $this->name,
+            'phone' => $this->phone
+        ]);
+        $this->resetInput();
+        
+        session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
+        return redirect()->to('/contact');
+    }
+    
+    private function resetInput()
+    {
+        $this->name = null;
+        $this->phone = null;
+    }
+}
