@@ -32,11 +32,6 @@
                     <option value="50">50</option>
                 </select>
             </div>
-
-        <div class="w-ful ml-auto">
-            <a href="{{ route('contact.create') }}" class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Contact Page</a>
-        </div>
-
             <div class="w-ful ml-auto">
                 <input wire:model="search" class="rounded border border-gray-300 p-2" placeholder="Search...">
             </div>
@@ -45,24 +40,27 @@
             <thead class="bg-gray-800 text-white">
             <tr>
                 <th class="px-4 py-2 w-1/12">#</th>
-                <th class="px-4 py-2">Name</th>
+                <th sortable class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Phone</th>
                 <th class="px-4 py-2 w-1/6">Action</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($contacts as $contact)
+            @forelse ($contacts as $contact)
             <tr>
                 <td class="border px-4 py-2">{{ $contact->id }}</td>
                 <td class="border px-4 py-2">{{ $contact->name }}</td>
                 <td class="border px-4 py-2">{{ $contact->phone }}</td>
-                <td class="flex flex-wrap border px-4 py-2">
-                    <a href="{{ route('contact.edit', $contact->id) }}" class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Page</a>
+                <td class="flex flex-wrap border px-4 py-2">                    
                     <button wire:click="getContact({{ $contact->id }})" class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                     <button wire:click="destroy({{ $contact->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+                <td>Not Found</td>
+            </tr>
+            @endforelse
             </tbody>
         </table>
         <div class="mt-5">

@@ -6,6 +6,7 @@ use App\Http\Livewire\Posts;
 use App\Http\Livewire\Contact\ContactIndex;
 use App\Http\Livewire\Contact\Create;
 use App\Http\Livewire\Contact\Update;
+use App\Http\Livewire\Contact\Index;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::get('post', Posts::class);
 Route::get('contact', ContactIndex::class);
 Route::get('contact/create', Create::class)->name('contact.create');
 Route::get('/contact/{id}/edit', Update::class)->name('contact.edit');
+Route::get('contacts', Index::class);
+// Route::get('contacts', function () {
+//     return view('livewire.contact.index');
+// });

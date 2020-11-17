@@ -28,7 +28,7 @@ class Create extends Component
         $this->resetInput();
         
         session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
-        return redirect()->to('/contact');
+        return redirect()->to('/contacts');
     }
     
     private function resetInput()
