@@ -9,7 +9,10 @@ class Update extends Component
 {
     public $name;
     public $phone;
+    public $status;
     public $contactId;
+
+
 
     public function mount($id)
     {
@@ -24,18 +27,19 @@ class Update extends Component
         return view('livewire.contact.update');
     }
 
-
     public function update()
     {
         $this->validate([
             'name' => 'required|min:3',
-            'phone' => 'required|max:15'
+            'phone' => 'required|max:15',
+            'status' => 'required'
         ]);
         if ($this->contactId) {
             $contact = Contact::find($this->contactId);
             $contact->update([
                 'name' => $this->name,
-                'phone' => $this->phone
+                'phone' => $this->phone,
+                'status' => $this->status
             ]);
             $this->resetInput();
 
@@ -50,6 +54,7 @@ class Update extends Component
     {
         $this->name = null;
         $this->phone = null;
+        $this->status = null;
     }
 }
 

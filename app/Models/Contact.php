@@ -17,9 +17,15 @@ class Contact extends Model
 
     public function getStatusAttribute($attribute)
     {
+        return $this->statusOptions()[$attribute];
+    }
+
+    public function statusOptions()
+    {
         return[
+        1 => 'Active',
         2 => 'Inactive',
-        1 => 'Active'
-    ][$attribute];
+        //2 => 'In-Progress',
+    ];
     }
 }

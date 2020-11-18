@@ -9,6 +9,7 @@ class Create extends Component
 {
     public $name;
     public $phone;
+    public $status;
 
     public function render()
     {
@@ -19,11 +20,13 @@ class Create extends Component
     {
         $this->validate([
             'name' => 'required|min:3',
-            'phone' => 'required|max:15'
+            'phone' => 'required|max:15',
+            'status' => 'required'
         ]);
         $contact = Contact::create([
             'name' => $this->name,
-            'phone' => $this->phone
+            'phone' => $this->phone,
+            'status' => $this->status
         ]);
         $this->resetInput();
         
@@ -35,5 +38,6 @@ class Create extends Component
     {
         $this->name = null;
         $this->phone = null;
+        $this->status = null;
     }
 }
