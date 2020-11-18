@@ -18,7 +18,7 @@ class Contact extends Model
     public function getStatusAttribute($attribute)
     {
         return[
-        0 => 'Inactive',
+        2 => 'Inactive',
         1 => 'Active'
     ][$attribute];
     }

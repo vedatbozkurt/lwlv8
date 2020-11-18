@@ -36,33 +36,33 @@
                 </div>
 
             </div>
-
-            <div class="relative flex items-start">
-                <div class="flex items-center h-5">
-                    <input wire:model="active" id="active" type="checkbox"
-                        class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                </div>
-                <div class="ml-3 text-sm leading-5">
-                    <label for="active" class="font-medium text-gray-700">Active?</label>
-                </div>
-            </div>
             <table class="table-fixed w-full">
                 <thead class="bg-gray-800 text-white">
                     <tr>
                         <th class="px-4 py-2 w-1/12">#</th>
                         <th class="px-6 py-3 text-left">
                             <div class="flex items-center">Name
-                                <button wire:click="sortBy('name')"class="mx-1">
+                                <button wire:click="sortBy('name')" class="mx-1">
                                 <x-sort-icon field="name" :sortField="$sortField" :sortAsc="$sortAsc" /></button>
                             </div>
                         </th>
                         <th class="px-6 py-3 text-left">
                             <div class="flex items-center">Phone
-                                <button wire:click="sortBy('phone')" class="mx-1">
+                                <button wire:click="sortBy('phone')"
+                                    class="mx-1">
                                 <x-sort-icon field="phone" :sortField="$sortField" :sortAsc="$sortAsc" /></button>
                             </div>
                         </th>
-                        <th class="px-4 py-2 w-1/6">Status</th>
+                        <th class="px-4 py-2 w-1/6">
+                            <div class="relative">Status
+                                <select wire:model="status" class="bg-gray-200 border border-gray-200 text-gray-700 py-1 px-1 pr-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                                  <option disabled>Status</option>
+                                  <option value="">All</option>
+                                  <option value="1">Active</option>
+                                  <option value="2">Inactive</option>
+                                </select>
+                              </div>
+                        </th>
                         <th class="px-4 py-2 w-1/6">Action</th>
                     </tr>
                 </thead>

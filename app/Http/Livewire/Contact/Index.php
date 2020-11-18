@@ -16,9 +16,9 @@ class Index extends Component
     public $search;
     public $sortField;
     public $sortAsc = true;
-    public $active = true;
+    public $status = null;
 
-    protected $queryString = ['search', 'active',  'sortAsc', 'sortField'];
+    protected $queryString = ['search', 'status',  'sortAsc', 'sortField'];
 
     public function render()
     {
@@ -29,10 +29,14 @@ class Index extends Component
             'contacts' => Contact::where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('phone', 'like', '%' . $this->search . '%');
-            })->where('status', $this->active)
+            })
             ->when($this->sortField, function ($query) {
                 $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
-            })->paginate($this->paginate),
+            })
+            ->when($this->status, function ($query) {
+                $query->where('status', $this->status);
+            })
+            ->paginate($this->paginate),
         ]);
     }
 
