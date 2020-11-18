@@ -56,7 +56,6 @@
                         <th class="px-4 py-2 w-1/6">
                             <div class="relative">Status
                                 <select wire:model="status" class="bg-gray-200 border border-gray-200 text-gray-700 py-1 px-1 pr-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                                  <option disabled>Status</option>
                                   <option value="">All</option>
                                   <option value="1">Active</option>
                                   <option value="2">Inactive</option>
