@@ -51,17 +51,15 @@
                     <tr>
                         <th class="px-4 py-2 w-1/12">#</th>
                         <th class="px-6 py-3 text-left">
-                            <div class="flex items-center">
-                                <button wire:click="sortBy('name')"
-                                    class="bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</button>
-                                <x-sort-icon field="name" :sortField="$sortField" :sortAsc="$sortAsc" />
+                            <div class="flex items-center">Name
+                                <button wire:click="sortBy('name')"class="mx-1">
+                                <x-sort-icon field="name" :sortField="$sortField" :sortAsc="$sortAsc" /></button>
                             </div>
                         </th>
                         <th class="px-6 py-3 text-left">
-                            <div class="flex items-center">
-                                <button wire:click="sortBy('phone')"
-                                    class="bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Phone</button>
-                                <x-sort-icon field="phone" :sortField="$sortField" :sortAsc="$sortAsc" />
+                            <div class="flex items-center">Phone
+                                <button wire:click="sortBy('phone')" class="mx-1">
+                                <x-sort-icon field="phone" :sortField="$sortField" :sortAsc="$sortAsc" /></button>
                             </div>
                         </th>
                         <th class="px-4 py-2 w-1/6">Status</th>
@@ -77,11 +75,7 @@
                             <td class="border px-4 py-2">{{ $contact->status }}</td>
                             <td class="flex flex-wrap border px-4 py-2">
                                 <a href="{{ route('contact.edit', $contact->id) }}"
-                                    class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit
-                                    Page</a>
-
-                                <button wire:click="getContact({{ $contact->id }})"
-                                    class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+                                    class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
                                 <button wire:click="destroy({{ $contact->id }})"
                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                             </td>

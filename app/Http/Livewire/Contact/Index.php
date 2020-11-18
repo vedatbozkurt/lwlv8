@@ -25,14 +25,14 @@ class Index extends Component
         // sleep(1);
         // Contact::latest()->paginate($this->paginate) :
         return view('livewire.contact.index', [
-            'contacts' => Contact::paginate(10),
+            'contacts' => Contact::paginate($this->paginate),
             'contacts' => Contact::where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('phone', 'like', '%' . $this->search . '%');
             })->where('status', $this->active)
             ->when($this->sortField, function ($query) {
                 $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
-            })->paginate(10),
+            })->paginate($this->paginate),
         ]);
     }
 
