@@ -17,7 +17,6 @@ class Create extends Component
         'status' => 'required',
     ];
 
-
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);

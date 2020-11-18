@@ -17,6 +17,7 @@ class Index extends Component
     public $sortField;
     public $sortAsc = true;
     public $status = null;
+    public $confirming;
 
     protected $queryString = ['search', 'status',  'sortAsc', 'sortField'];
 
@@ -55,6 +56,11 @@ class Index extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function confirmDelete($id=null)
+    {
+        $this->confirming = $id;
     }
 
     public function destroy($id)
