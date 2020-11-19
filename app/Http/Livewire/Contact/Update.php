@@ -4,14 +4,30 @@ namespace App\Http\Livewire\Contact;
 
 use Livewire\Component;
 use App\Models\Contact;
+use Livewire\WithFileUploads;
 
 class Update extends Component
 {
+    use WithFileUploads;
+
     public $name;
     public $phone;
+    public $photo;
+    public $currentPhoto;
     public $status;
     public $contactId;
 
+    protected $rules = [
+        'name' => 'required|min:3',
+        'phone' => 'required|max:15',
+        'status' => 'required',
+        'photo' => 'nullable|sometimes|image|max:5000',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
 
     public function mount($id)
@@ -20,6 +36,7 @@ class Update extends Component
         $this->contactId = $id;
         $this->name = $contact->name;
         $this->phone = $contact->phone;
+        $this->currentPhoto = $contact->photo;
     }
 
     public function render()
@@ -29,17 +46,20 @@ class Update extends Component
 
     public function update()
     {
-        $this->validate([
-            'name' => 'required|min:3',
-            'phone' => 'required|max:15',
-            'status' => 'required'
-        ]);
+        $this->validate();
+
+        if ($this->photo) {
+            $this->currentPhoto = md5($this->photo . microtime()).'.'.$this->photo->extension();
+            $this->photo->storeAs('public/contact', $this->currentPhoto);
+        }
+
         if ($this->contactId) {
             $contact = Contact::find($this->contactId);
             $contact->update([
                 'name' => $this->name,
                 'phone' => $this->phone,
-                'status' => $this->status
+                'status' => $this->status,
+                'photo' => $this->currentPhoto,
             ]);
             $this->resetInput();
 

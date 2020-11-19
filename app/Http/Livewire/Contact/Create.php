@@ -29,10 +29,10 @@ class Create extends Component
 
     public function store()
     {
-        $contact = $this->validate();
+        $this->validate();
 
         $photoname = md5($this->photo . microtime()).'.'.$this->photo->extension();
-        $this->photo->storeAs('photos', $photoname);
+        $this->photo->storeAs('public/contact', $photoname);
 
         $contact = Contact::create([
             'name' => $this->name,
