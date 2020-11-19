@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Contact;
 use App\Models\Contact;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
@@ -65,7 +66,13 @@ class Index extends Component
 
     public function destroy($id)
     {
-        Contact::destroy($id);
+        $contact = Contact::findOrFail($id);
+
+        if ($contact->photo != '') {
+            Storage::delete('public/contact/'.$contact->photo);
+        }
+
+        $contact->delete();
         session()->flash('message', 'Contact was deleted');
     }
 }
