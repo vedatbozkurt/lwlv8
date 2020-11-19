@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Contact;
 use Livewire\Component;
 use App\Models\Contact;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class Update extends Component
 {
@@ -49,6 +50,7 @@ class Update extends Component
         $this->validate();
 
         if ($this->photo) {
+            Storage::delete('public/contact/'.$this->currentPhoto);
             $this->currentPhoto = md5($this->photo . microtime()).'.'.$this->photo->extension();
             $this->photo->storeAs('public/contact', $this->currentPhoto);
         }
