@@ -11,8 +11,6 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $statusUpdate = false;
-
     public $paginate = 5;
     public $search;
     public $sortField;
@@ -20,7 +18,12 @@ class Index extends Component
     public $status = null;
     public $confirming;
 
-    protected $queryString = ['search', 'status',  'sortAsc', 'sortField'];
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'status' => ['except' => ''],
+        'sortAsc',
+        'sortField'
+    ];
 
     public function render()
     {
@@ -53,7 +56,7 @@ class Index extends Component
         $this->sortField = $field;
     }
 
-    //reset page before searching
+    //reset page number before searching
     public function updatingSearch()
     {
         $this->resetPage();

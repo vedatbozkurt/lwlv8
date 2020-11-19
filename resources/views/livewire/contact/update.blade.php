@@ -15,7 +15,7 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                     Name
                 </label>
-                <input wire:model="name"
+                <input wire:model.lazy="name"
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('name') border-red-500 @enderror rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-first-name" type="text" placeholder="Jane">
                 @error('name')
@@ -26,7 +26,7 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                     Phone
                 </label>
-                <input wire:model="phone"
+                <input wire:model.lazy="phone"
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('phone') border-red-500 @enderror rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-last-name" type="text" placeholder="+628126498">
                 @error('phone')

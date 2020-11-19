@@ -22,6 +22,17 @@ class Create extends Component
         'photo' => 'image|max:1024', // 1MB Max
     ];
 
+    protected $messages = [
+        'name.required' => 'The Name value cannot be empty.',
+        // 'name.required' => 'The :attribute cannot be empty.',
+        // 'email.required' => 'The Email Address cannot be empty.',
+        // 'email.email' => 'The Email Address format is not valid.',
+    ];
+
+    protected $validationAttributes = [
+        'phone' => 'Phone Number'
+    ];
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
@@ -30,7 +41,6 @@ class Create extends Component
     public function store()
     {
         $this->validate();
-
         $photoname = md5($this->photo . microtime()).'.'.$this->photo->extension();
         $this->photo->storeAs('public/contact', $photoname);
 

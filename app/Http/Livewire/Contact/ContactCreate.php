@@ -27,7 +27,7 @@ class ContactCreate extends Component
         ]);
         $this->resetInput();
         
-        session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
+        // session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
         $this->emit('contactStored', $contact);
     }
 
