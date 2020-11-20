@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Contact;
 
 use App\Models\Contact;
+use App\Models\Status;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +31,8 @@ class Index extends Component
         // sleep(1);
         // Contact::latest()->paginate($this->paginate) :
         return view('livewire.contact.index', [
-            'contacts' => Contact::paginate($this->paginate),
+            'statuses' => Status::all(),
+            'contacts' => Contact::with('status')->paginate($this->paginate),
             'contacts' => Contact::where(function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('phone', 'like', '%' . $this->search . '%');
@@ -39,8 +41,9 @@ class Index extends Component
                 $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
             })
             ->when($this->status, function ($query) {
-                $query->where('status', $this->status);
+                $query->where('status_id', $this->status);
             })
+            ->with('status')
             ->paginate($this->paginate),
         ]);
     }

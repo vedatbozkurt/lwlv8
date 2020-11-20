@@ -35,16 +35,16 @@
             </div>
             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Status - {{ $status }}
+                    Status {{$status}}
                 </label>
                 <select wire:model="status"
                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8  @error('status') border-red-500 @enderror rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-state">
                     <option value="">Select </option>
-                    @foreach ($contactx->statusTextOptions() as $statusTextOptionKey => $statusTextOptionValue)
-                        <option value="{{ $statusTextOptionKey }}">{{ $statusTextOptionValue }}</option>
+                    @foreach($statuses as $status)
+                    <option value="{{ $status->id }}">{{$status->name}}</option>
                     @endforeach
-                </select>
+                  </select>
                 @error('status')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror

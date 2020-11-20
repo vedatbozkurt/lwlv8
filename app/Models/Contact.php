@@ -10,33 +10,38 @@ class Contact extends Model
     use HasFactory;
 
     // protected $appends = ['deneme_xa'];
-    protected $appends = ['durum'];
+    // protected $appends = ['durum'];
 
     protected $fillable = [
         'name',
         'phone',
         'photo',
-        'status'
+        'status_id'
     ];
 
-    public function getStatusTextAttribute($attribute)
+    public function status()
     {
-        return $this->statusTextOptions()[$attribute];
+        return $this->belongsTo('App\Models\Status');
     }
 
-    public function statusTextOptions()
-    {
-        return [
-        1 => 'Active',
-        2 => 'Inactive'
-        //2 => 'In-Progress',
-    ];
-    }
+    // public function getStatusTextAttribute($attribute)
+    // {
+    //     return $this->statusTextOptions()[$attribute];
+    // }
 
-    public function getDurumAttribute()
-    {
-        return $this->statusTextOptions()[$this->status];
-    }
+    // public function statusTextOptions()
+    // {
+    //     return [
+    //     1 => 'Active',
+    //     2 => 'Inactive'
+    //     //2 => 'In-Progress',
+    // ];
+    // }
+
+    // public function getDurumAttribute()
+    // {
+    //     return $this->statusTextOptions()[$this->status];
+    // }
 
     // public function getDenemeXaAttribute()
     // {

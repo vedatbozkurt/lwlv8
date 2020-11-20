@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Contact;
 
 use Livewire\Component;
 use App\Models\Contact;
+use App\Models\Status;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,8 +17,8 @@ class Update extends Component
     public $photo;
     public $currentPhoto;
     public $status;
+    public $statuses;
     public $contactId;
-    public $contactx;
 
     protected $rules = [
         'name' => 'required|min:3',
@@ -34,11 +35,11 @@ class Update extends Component
 
     public function mount($id)
     {
+        $this->statuses  = Status::all();
         $contact = Contact::find($id);
-        $this->contactx = $contact;
         $this->contactId = $id;
         $this->name = $contact->name;
-        $this->status = $contact->status;
+        $this->status = $contact->status_id;
         $this->phone = $contact->phone;
         $this->currentPhoto = $contact->photo;
     }
@@ -63,7 +64,7 @@ class Update extends Component
             $contact->update([
                 'name' => $this->name,
                 'phone' => $this->phone,
-                'status' => $this->status,
+                'status_id' => $this->status,
                 'photo' => $this->currentPhoto,
             ]);
             $this->resetInput();

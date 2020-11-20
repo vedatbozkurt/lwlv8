@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Contact;
 
 use Livewire\Component;
 use App\Models\Contact;
+use App\Models\Status;
 use Livewire\WithFileUploads;
 
 class Create extends Component
@@ -14,6 +15,7 @@ class Create extends Component
     public $phone;
     public $status;
     public $photo;
+    public $statuses;
 
     protected $rules = [
         'name' => 'required',
@@ -33,26 +35,36 @@ class Create extends Component
         'phone' => 'Phone Number'
     ];
 
-    public function updated($propertyName)
+    
+    public function mount()
     {
-        $this->validateOnly($propertyName);
+        $this->statuses  = Status::all();
     }
 
     public function store()
     {
         $this->validate();
         $photoname = md5($this->photo . microtime()).'.'.$this->photo->extension();
-        $this->photo->storeAs('public/contact', $photoname);
 
         $contact = Contact::create([
             'name' => $this->name,
             'phone' => $this->phone,
-            'status' => $this->status,
+            'status_id' => $this->status,
             'photo' => $photoname,
         ]);
+
+        $this->photo->storeAs('public/contact', $photoname);
+        
         $this->resetInput();
         session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
         return redirect()->to('/contacts');
+    }
+
+
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
     
     private function resetInput()
