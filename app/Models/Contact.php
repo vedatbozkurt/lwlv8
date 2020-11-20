@@ -9,6 +9,9 @@ class Contact extends Model
 {
     use HasFactory;
 
+    // protected $appends = ['deneme_xa'];
+    protected $appends = ['durum'];
+
     protected $fillable = [
         'name',
         'phone',
@@ -16,17 +19,27 @@ class Contact extends Model
         'status'
     ];
 
-    public function getStatusAttribute($attribute)
+    public function getStatusTextAttribute($attribute)
     {
-        return $this->statusOptions()[$attribute];
+        return $this->statusTextOptions()[$attribute];
     }
 
-    public function statusOptions()
+    public function statusTextOptions()
     {
-        return[
+        return [
         1 => 'Active',
-        2 => 'Inactive',
+        2 => 'Inactive'
         //2 => 'In-Progress',
     ];
     }
+
+    public function getDurumAttribute()
+    {
+        return $this->statusTextOptions()[$this->status];
+    }
+
+    // public function getDenemeXaAttribute()
+    // {
+    //     return 'wuhahah';
+    // }
 }

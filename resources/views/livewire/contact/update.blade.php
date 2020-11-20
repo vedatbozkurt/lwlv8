@@ -35,14 +35,15 @@
             </div>
             <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Status
+                    Status - {{ $status }}
                 </label>
                 <select wire:model="status"
                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8  @error('status') border-red-500 @enderror rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-state">
                     <option value="">Select </option>
-                    <option value="1">Active</option>
-                    <option value="2">Inactive</option>
+                    @foreach ($contactx->statusTextOptions() as $statusTextOptionKey => $statusTextOptionValue)
+                        <option value="{{ $statusTextOptionKey }}">{{ $statusTextOptionValue }}</option>
+                    @endforeach
                 </select>
                 @error('status')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -60,13 +61,13 @@
                 @enderror
                 {{-- <div wire:loading wire:target="photo"
                     class="text-sm text-gray-500 italic">Uploading...</div> --}}
-                    <div class="mt-4">
-                        @if ($photo)
-                            <img src="{{ $photo->temporaryUrl() }}" class="md:w-1/2" alt="temp">
-                        @elseif ($currentPhoto)
-                            <img src="{{ Storage::url("contact/{$currentPhoto}") }}" alt="cover image">
-                        @endif
-                    </div>
+                <div class="mt-4">
+                    @if ($photo)
+                        <img src="{{ $photo->temporaryUrl() }}" class="md:w-1/2" alt="temp">
+                    @elseif ($currentPhoto)
+                        <img src="{{ Storage::url("contact/{$currentPhoto}") }}" alt="cover image">
+                    @endif
+                </div>
             </div>
             <div class="flex items-center ml-3 mt-4">
                 <button type="submit"

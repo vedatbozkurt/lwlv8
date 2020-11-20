@@ -17,6 +17,7 @@ class Update extends Component
     public $currentPhoto;
     public $status;
     public $contactId;
+    public $contactx;
 
     protected $rules = [
         'name' => 'required|min:3',
@@ -34,8 +35,10 @@ class Update extends Component
     public function mount($id)
     {
         $contact = Contact::find($id);
+        $this->contactx = $contact;
         $this->contactId = $id;
         $this->name = $contact->name;
+        $this->status = $contact->status;
         $this->phone = $contact->phone;
         $this->currentPhoto = $contact->photo;
     }
@@ -77,6 +80,7 @@ class Update extends Component
         $this->name = null;
         $this->phone = null;
         $this->status = null;
+        $this->photo = null;
     }
 }
 

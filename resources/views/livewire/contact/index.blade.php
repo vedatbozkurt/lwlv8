@@ -71,10 +71,10 @@
                 <tbody>
                     @forelse ($contacts as $contact)
                         <tr>
-                            <td class="border px-4 py-2">{{ $contact->id }}</td>
+                            <td class="border px-4 py-2">{{ $contact }}</td>
                             <td class="border px-4 py-2">{{ $contact->name }}</td>
                             <td class="border px-4 py-2">{{ $contact->phone }}</td>
-                            <td class="border px-4 py-2">{{ $contact->status }}</td>
+                            <td class="border px-4 py-2">{{ $contact->durum }}</td>
                             <td class="flex flex-wrap border px-4 py-2">
                                 <a href="{{ route('contact.edit', $contact->id) }}"
                                     class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
