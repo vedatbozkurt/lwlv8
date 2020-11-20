@@ -64,6 +64,10 @@ class Index extends Component
     {
         $this->resetPage();
     }
+    public function updatingStatus()
+    {
+        $this->resetPage();
+    }
 
     public function confirmDelete($id=null)
     {
