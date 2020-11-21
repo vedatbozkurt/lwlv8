@@ -28,6 +28,9 @@ class Index extends Component
 
     public function render()
     {
+        // session()->flash('deneme', 'Contact was deleted');
+        // $this->dispatchBrowserEvent('alert');
+        // $this->dispatchBrowserEvent('alert',['type' => 'success','message' => 'Saved']);
         // sleep(1);
         // Contact::latest()->paginate($this->paginate) :
         return view('livewire.contact.index', [

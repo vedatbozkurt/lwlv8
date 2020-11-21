@@ -56,7 +56,11 @@ class Create extends Component
         $this->photo->storeAs('public/contact', $photoname);
         
         $this->resetInput();
-        session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
+        // session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
+        session()->flash('alert', [
+            'icon' => 'success',
+            'message' => 'Contact ' . $contact['name'] . ' was created'
+        ]);
         return redirect()->to('/contacts');
     }
 
