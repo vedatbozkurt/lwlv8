@@ -26,6 +26,9 @@ class InitDataSeeder extends Seeder
             ]);
         }
 
+        // $count = 100;
+        // factory(\App\Models\Contact::class, $count)->create();
+
         for ($i=0;$i<25;$i++) {
             \App\Models\Contact::create([
                 'name' => 'contact'.$i,
