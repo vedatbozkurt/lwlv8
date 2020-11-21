@@ -27,11 +27,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('post', Posts::class);
-Route::get('contact', ContactIndex::class);
+Route::get('post', Posts::class)->name('posts');
+Route::get('contact', ContactIndex::class)->name('contact');
 Route::get('contact/create', Create::class)->name('contact.create');
 Route::get('/contact/{id}/edit', Update::class)->name('contact.edit');
-Route::get('contacts', Index::class);
+Route::get('contacts', Index::class)->name('contacts');
 // Route::get('contacts', function () {
 //     return view('livewire.contact.index');
 // });
