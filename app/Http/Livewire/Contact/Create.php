@@ -60,8 +60,6 @@ class Create extends Component
         return redirect()->to('/contacts');
     }
 
-
-
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);

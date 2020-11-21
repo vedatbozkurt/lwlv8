@@ -12,7 +12,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $paginate = 5;
+    public $paginate = 10;
     public $search;
     public $sortField;
     public $sortAsc = true;
@@ -55,7 +55,6 @@ class Index extends Component
         } else {
             $this->sortAsc = true;
         }
-
         $this->sortField = $field;
     }
 
