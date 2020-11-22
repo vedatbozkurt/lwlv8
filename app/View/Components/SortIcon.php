@@ -20,7 +20,6 @@ class SortIcon extends Component
         $this->sortField = $sortField;
         $this->sortAsc = $sortAsc;
     }
-
     /**
      * Get the view / contents that represent the component.
      *
