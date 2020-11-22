@@ -84,7 +84,10 @@ class Index extends Component
             Storage::delete('public/contact/'.$contact->photo);
         }
 
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Contact ' . $contact['name'] . ' was deleted'
+        ]);
         $contact->delete();
-        session()->flash('message', 'Contact was deleted');
     }
 }

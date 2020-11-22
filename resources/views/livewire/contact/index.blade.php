@@ -5,6 +5,15 @@
 </x-slot>
 <div>
 
+                
+    {{-- @if (session()->has('alert'))
+    <livewire:alert :toastType="session('alert.type')" :toastMessage="session('alert.message')" />
+    @endif --}}
+
+    @if (session()->has('alert'))
+    <x-toast :toastType="session('alert.type')" :toastMessage="session('alert.message')" />      
+    @endif
+
     <a href="contact/create"
         class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Contact</a>
 

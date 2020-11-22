@@ -71,7 +71,10 @@ class Update extends Component
 
             // $this->emit('contactUpdated', $contact);
 
-            session()->flash('message', 'Contact ' . $contact['name'] . ' was updated');
+            session()->flash('alert', [
+                'type' => 'success',
+                'message' => 'Contact ' . $contact['name'] . ' was updated'
+            ]);
             return redirect()->to('/contacts');
         }
     }

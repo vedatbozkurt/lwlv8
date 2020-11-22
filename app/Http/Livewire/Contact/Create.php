@@ -58,7 +58,7 @@ class Create extends Component
         $this->resetInput();
         // session()->flash('message', 'Contact ' . $contact['name'] . ' was created');
         session()->flash('alert', [
-            'icon' => 'success',
+            'type' => 'success',
             'message' => 'Contact ' . $contact['name'] . ' was created'
         ]);
         return redirect()->to('/contacts');

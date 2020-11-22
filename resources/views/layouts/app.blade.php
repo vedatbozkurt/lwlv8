@@ -38,27 +38,7 @@
                 {{ $slot }}
             </main>
         </div>
-        <x-toast toastType="messageComponent" />      
-@if (session()->has('alert'))
-<script>
-  const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
 
-Toast.fire({
-  icon: '{{ session('alert.icon') }}',
-  title: '{{ session('alert.message') }}'
-})
-</script>
-@endif
         @stack('modals')
 
         @livewireScripts
