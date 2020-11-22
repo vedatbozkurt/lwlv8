@@ -13,7 +13,6 @@ class Toast extends Component
      *
      * @return void
      */
-    
     public function __construct($toastType)
     {
         $this->toastType = $toastType;
