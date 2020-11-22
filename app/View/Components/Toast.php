@@ -17,7 +17,6 @@ class Toast extends Component
     {
         $this->toastType = $toastType;
     }
-
     /**
      * Get the view / contents that represent the component.
      *
